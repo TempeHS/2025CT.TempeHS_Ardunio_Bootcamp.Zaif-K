@@ -45,21 +45,24 @@ void setup() {
 }
 
 void loop() 
-{ 
-  
-  if (digitalRead(buttonPin) == LOW)
-  {
-   if (digitalRead(lineSensorPin) == HIGH)
-    {
-    digitalWrite(ledPin, HIGH);
-    delay(50);
-    }
-  }
-
 {
-   else
+  Serial.println(analogRead(A3));
+ if (analogRead(A3) == 0)
+ {
+    digitalWrite(ledPin, HIGH);
+ } else if (analogRead(A3) >= 600)
+ {
     digitalWrite(ledPin, LOW);
+  }
+   else if (analogRead(A3) >= 300)
+  { 
+   digitalWrite(ledPin, HIGH);
+  } else
+  { 
+   digitalWrite(ledPin, LOW);
+  }  
 }
+
 
 
 /* 
