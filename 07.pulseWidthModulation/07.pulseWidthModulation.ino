@@ -12,7 +12,7 @@
     5.  I can write PWM data to multiple pins and manually change the colour of the LED
 
   Student Notes: 
-
+  Rememebr it's best to assing a naming system in order to identify pins, resistors and wires.
   Documentation: 
     https://www.w3schools.com/colors/colors_rgb.aspt
     https://github.com/TempeHS/TempeHS_Ardunio_Bootcamp/blob/main/07.pulseWidthModulation/Pulse-Width-Modulation.jpg
@@ -21,19 +21,24 @@
     https://github.com/TempeHS/TempeHS_Ardunio_Bootcamp/blob/main/07.pulseWidthModulation/Bootcamp-PWMOutput.png
 */
 
-static unsigned int LEDPin = 3;
-static unsigned int buttonPin = A3;
+
+C++ Code Tinkercad
+ unsigned static int rLED = 9;
+ unsigned static int bLED = 10;
+ unsigned static int gLED = 11;
+
+void setup ()
+( 
+ pinMode(rLED, OUTPUT);
+ pinMode(gLED, OUTPUT);
+ pinMode(bLED, OUTPUT);
+
+ void loop ()
+(
+ analogWrite(rLED, 128);
+ analogWrite(bLED, 128);
+ analogWrite(gLED, 128);
+)
 
 
-void setup() {
-  Serial.begin(9600);    
-  Serial.println("Debug");    
-  pinMode (LEDPin, OUTPUT);
-  pinMode (buttonPin, INPUT);                                                                                                                                                       
-}
 
-void loop() 
-{ int val = analogRead(A3);
-  val = val / 4;
-  analogWrite(LEDPin, val);
-}
