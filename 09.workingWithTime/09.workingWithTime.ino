@@ -17,7 +17,7 @@
     https://github.com/TempeHS/TempeHS_Ardunio_Bootcamp/blob/main/09.workingWithTime/Bootcamp-workingWithTime.png
 */
 static unsigned int blueLED = 6;
-static unsigned int greenLed = 2;
+static unsigned int greenLED = 2;
 unsigned int blueLEDState = LOW;
 unsigned int greenLEDState = LOW;
 
@@ -27,16 +27,47 @@ unsigned int greenLEDState = LOW;
 unsigned long blueLEDPreviousMillis = 0;
 unsigned long greenLEDPreviousMillis = 0;
 
-// use a long so you can mathematically compare with the variable preiousMillis wihtout conversion
+// use a long so you can mathematically compare with the variable preiousMillis without conversion
 const unsigned long blueLEDinterval = 2000;
 const unsigned long greenLEDinterval = 9000;
 
-void setup() {
-  
+void setup() 
+{
+  Serial.begin(9600);
+  Serial.println("Debug");
+  pinMode(blueLED, OUTPUT);
+  pinMode(greenLED, OUTPUT);
 }
 
 
 void loop() {
+  //check  to see if it's time to blink the LED; that is , if the difference
+  //between the current time and last time you blinked the LED is bigger than
+  // the interval at which you wany to blink the LED
+
+  unsigned long currentMillis = millis();
+
+   if (currentMillis - blueLEDPreviousMillis >= blueLEDinterval) 
+   {
+    blueLEDState = !blueLEDState;
+    digitalWrite(blueLED, blueLEDState);
+    blueLEDPreviousMillis = currentMillis;
+   }
+      
+   if (currentMillis - greenLEDPreviousMillis >= greenLEDinterval) 
+    {
+    greenLEDState = !greenLEDState;
+    digitalWrite(greenLED, greenLEDState);
+    greenLEDPreviousMillis = currentMillis;
+   }
   
+  Serial.print("Millis:");
+  Serial.print(currentMillis);
+  Serial.print(",");
+  Serial.print("blueLED");
+  Serial.print(blueLEDState);
+  Serial.print("greenLED:");
+  Serial.println(greenLEDState);
+
 }
 
