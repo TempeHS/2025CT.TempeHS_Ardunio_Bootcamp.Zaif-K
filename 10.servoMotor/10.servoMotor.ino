@@ -33,6 +33,6 @@ void setup() {
 
 void loop() {
  int val = analogRead(potpin);
- val = map(val, 1023, 0, 180 , 0);
+ val = map(val, 0, 1023, 0 , 180);
  myservo.write(val);
 }

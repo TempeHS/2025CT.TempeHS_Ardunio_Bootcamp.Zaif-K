@@ -45,7 +45,7 @@ unsigned int Ultrasonic::timing() {
   digitalWrite(trig, HIGH);
   delayMicroseconds(10);
   digitalWrite(trig, LOW);
-  delay(30);
+  /*delay(30);
 
   if (threePins)
     pinMode(trig, INPUT);
@@ -63,14 +63,15 @@ unsigned int Ultrasonic::timing() {
  * sby default, it will return the distance in centimeters.
  * To change the default, replace CM by INC.
  */
-unsigned int Ultrasonic::read(uint8_t und) {
-  return timing() / und / 2;  //distance by divisor
+//unsigned int Ultrasonic::read(uint8_t und) {
+  //return timing() / und / 2;  //distance by divisor
 }
 
 /*
  * This method is too verbal, so, it's deprecated.
  * Use read() instead.
  */
-unsigned int Ultrasonic::distanceRead(uint8_t und) {
-  return read(und);
-}
+//unsigned int Ultrasonic::distanceRead(uint8_t und) {
+  //return read(und);
+
+
