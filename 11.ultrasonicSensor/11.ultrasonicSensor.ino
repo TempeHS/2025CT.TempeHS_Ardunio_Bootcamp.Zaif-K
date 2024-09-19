@@ -28,29 +28,31 @@
 
 
 Servo myservo;
-Ultrasonic braj_the_sensor(5);
+Ultrasonic mysensor(5);
 
 unsigned static int servoPin = 7;
 unsigned static int potpin = A2;
+unsigned long currentMillis = millis()
 
-void setup() {
+void setup() 
+{
   myservo.attach(servoPin);
   Serial.begin(9600);
 }
 
-void loop() {
- 
-
- if(digitalRead(brajthesensor)>=10)
+void loop()
 {
-  digitalWrite(servoPin, 180)
-  delay(50)
-}
-  {
-  else  
+  
+  if (mysensor.distanceRead() >= 10)
+  { 
+   myservo.Write(90);
+   Serial.println("close gate");
   }
- Serial.println(braj_the_sensor.distanceRead());
- int val = analogRead(potpin);
- val = map(val, 0, 1023, 0 , 180);
- myservo.write(val);
+  
+  
+  if (mysensor.distanceRead() <= 10)
+  { 
+   myservo.Write(0);
+   Serial.println("open gate");
+  }
 }
