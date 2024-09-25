@@ -24,15 +24,18 @@
 */
 
 #include "Ultrasonic.h"
-#include <Servo.h>
 
+#include <Servo.h>
 
 Servo myservo;
 Ultrasonic mysensor(5);
 
 unsigned static int servoPin = 7;
 unsigned static int potpin = A2;
-unsigned long currentMillis = millis()
+
+unsigned long currentMillis = millis();
+
+
 
 void setup() 
 {
@@ -40,19 +43,17 @@ void setup()
   Serial.begin(9600);
 }
 
-void loop()
+void loop() 
 {
-  
-  if (mysensor.distanceRead() >= 10)
-  { 
-   myservo.Write(90);
-   Serial.println("close gate");
+      if (mysensor.distanceRead() >= 10)
+  {
+    myservo.write(90);
+    Serial.println("close gate");
   }
-  
-  
-  if (mysensor.distanceRead() <= 10)
+
+      if (mysensor.distanceRead() <= 10)
   { 
-   myservo.Write(0);
-   Serial.println("open gate");
+    myservo.write(0);
+    Serial.println("open gate");
   }
 }
